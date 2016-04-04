@@ -1,0 +1,12 @@
+{
+  "name": "scribble-electron",
+  "version": "1.0.0",
+  "description": "Taking notes like a human person in 21th century.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["electron", "note", "memo"],
+  "author": "",
+  "license": "MIT"
+}

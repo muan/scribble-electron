@@ -1,0 +1,85 @@
+<!doctype>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+  body,
+  button,
+  textarea {
+    word-wrap: break-word;
+    font-family: menlo, monaco, monospace;
+    margin: 0;
+  }
+
+  .header {
+    height: 20px;
+    position: relative;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    z-index: 2;
+    border-bottom: 1px solid #eee;
+    text-align: right;
+  }
+
+  .header:hover ~ .write-area {
+    opacity: 0.5;
+  }
+
+  div,
+  textarea {
+    box-sizing: border-box;
+  }
+
+  .write-area {
+    outline: none;
+    padding: 0 10px;
+    line-height: 20px;
+    background-image: linear-gradient(to bottom, transparent 19px, #e0e0e0 20px);
+    background-size: 1px 20px;
+    width: 100%;
+    border: 0;
+    height: 355px;
+    transition: opacity .3s;
+  }
+
+  .current {
+    font-weight: bold;
+  }
+
+  .list-of-saves {
+    z-index: -1;
+    visibility: collapse;
+    position: absolute;
+    top: 5px;
+    right: 3px;
+    padding: 14px 5px 0;
+    list-style: none;
+  }
+
+  .menu:hover ~ .list-of-saves,
+  .list-of-saves:hover {
+    visibility: visible;
+  }
+
+  .burger {
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    background-image: linear-gradient(to bottom, transparent 2px, #333 2px, #333 4px, transparent 4px);
+  }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <button type="button" class="js-new-save">New</button>
+    <button type="button" aria-label="List of saves" class="menu">
+      <div class="burger" aria-hidden="true"></div>
+    </button>
+    <ul class="js-list-of-saves list-of-saves"></ul>
+  </header>
+  <textarea class="js-write-area write-area"></textarea>
+
+  <script type="text/javascript" src="renderer.js"></script>
+</body>
+</html>
