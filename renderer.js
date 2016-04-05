@@ -84,6 +84,14 @@ const renderListing = function () {
   })
 }
 
+const showList = function () {
+  listOfSaves.classList.add('open')
+}
+
+const hideList = function () {
+  listOfSaves.classList.remove('open')
+}
+
 writeArea.addEventListener('input', saveData)
 
 if (currentSave()) {
@@ -107,6 +115,10 @@ document.addEventListener('click', function (evt) {
 })
 
 document.addEventListener('keydown', function (evt) {
+  if (evt.shiftKey && evt.metaKey) {
+    showList()
+  }
+
   if (evt.metaKey && evt.code === 'KeyN') {
     newSave()
   }
@@ -127,5 +139,11 @@ document.addEventListener('keydown', function (evt) {
     if (saves.indexOf(currentSave()) < saves.length - 1) {
       loadSave(saves[saves.indexOf(currentSave()) + 1])
     }
+  }
+})
+
+document.addEventListener('keyup', function (evt) {
+  if (evt.shiftKey || evt.metaKey) {
+    hideList()
   }
 })
