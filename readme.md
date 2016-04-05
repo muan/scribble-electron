@@ -9,10 +9,15 @@ Scribble is a menubar note taking app using `LocalStorage`.
 ### Shortcuts
 
 <kbd>cmd + shift + '</kbd> Open app
+
 <kbd>cmd + N</kbd> Create new note
+
 <kbd>cmd + D</kbd> Delete current note
+
 <kbd>cmd + ]</kbd> Go to next note
+
 <kbd>cmd + [</kbd> Go to previous note
+
 <kbd>cmd + shift</kbd> See list of notes
 
 ### TODO
