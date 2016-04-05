@@ -19,9 +19,9 @@
   }
 
   .header {
-    position: relative;
-    margin-bottom: 10px;
+    position: absolute;
     padding: 4px 10px 5px;
+    width: 100%;
     z-index: 2;
     border-bottom: 1px solid #eee;
     text-align: right;
@@ -32,20 +32,26 @@
   }
 
   div,
+  header,
   textarea {
     box-sizing: border-box;
   }
 
   .write-area {
-    outline: none;
+    position: absolute;
     padding: 0 10px;
     line-height: 20px;
-    background-image: linear-gradient(to bottom, transparent 19px, #e0e0e0 20px);
-    background-size: 1px 20px;
-    width: 100%;
+    background-attachment: local;
+    background-image: linear-gradient(transparent 0, transparent 19px, #e0e0e0 20px);
+    background-size: auto 20px;
     border: 0;
-    height: 355px;
+    width: 100%;
+    top: 40px;
+    bottom: 0;
     transition: opacity .3s;
+
+    /* Weirdest chrome bug hack ever */
+    outline: 1px solid transparent;
   }
 
   .current {
