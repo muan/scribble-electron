@@ -30,14 +30,15 @@ const saveData = function (evt) {
 }
 
 const newSave = function () {
-  var saves = loadSaves()
+  let saves = loadSaves()
+  let num
   if (saves.length > 0) {
-    var num = Number(saves[0].replace(saveNameFixed, '')) + 1
+    num = Number(saves[0].replace(saveNameFixed, '')) + 1
   } else {
-    var num = 1
+    num = 1
   }
 
-  var name = saveNameFixed + num
+  let name = saveNameFixed + num
   localStorage.setItem(name, '')
   loadSave(name)
 
@@ -64,13 +65,13 @@ const renderListing = function () {
   listOfSaves.innerHTML = ''
 
   loadSaves().forEach(function (key) {
-    var li = document.createElement('li')
-    var button = document.createElement('button')
+    let li = document.createElement('li')
+    let button = document.createElement('button')
     button.type = 'button'
     button.innerText = localStorage.getItem(key).split('\n')[0] || 'Empty'
     button.setAttribute('data-save', key)
     button.classList.add('js-load-save')
-    var deleteButton = document.createElement('button')
+    let deleteButton = document.createElement('button')
     deleteButton.type = 'button'
     deleteButton.innerText = '×'
     deleteButton.classList.add('js-delete-save')
@@ -115,14 +116,14 @@ document.addEventListener('keydown', function (evt) {
   }
 
   if (evt.metaKey && evt.code === 'BracketLeft') {
-    var saves = loadSaves()
+    let saves = loadSaves()
     if (saves.indexOf(currentSave()) !== 0) {
       loadSave(saves[saves.indexOf(currentSave()) - 1])
     }
   }
 
   if (evt.metaKey && evt.code === 'BracketRight') {
-    var saves = loadSaves()
+    let saves = loadSaves()
     if (saves.indexOf(currentSave()) < saves.length - 1) {
       loadSave(saves[saves.indexOf(currentSave()) + 1])
     }

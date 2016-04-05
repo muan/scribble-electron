@@ -12,10 +12,9 @@
   }
 
   .header {
-    height: 20px;
     position: relative;
     margin-bottom: 10px;
-    padding: 5px 10px;
+    padding: 4px 10px 5px;
     z-index: 2;
     border-bottom: 1px solid #eee;
     text-align: right;
@@ -47,7 +46,6 @@
   }
 
   .list-of-saves {
-    z-index: -1;
     visibility: collapse;
     position: absolute;
     top: 5px;
@@ -60,22 +58,12 @@
   .list-of-saves:hover {
     visibility: visible;
   }
-
-  .burger {
-    width: 10px;
-    height: 10px;
-    border-top: 2px solid #333;
-    border-bottom: 2px solid #333;
-    background-image: linear-gradient(to bottom, transparent 2px, #333 2px, #333 4px, transparent 4px);
-  }
   </style>
 </head>
 <body>
   <header class="header">
     <button type="button" class="js-new-save">New</button>
-    <button type="button" aria-label="List of saves" class="menu">
-      <div class="burger" aria-hidden="true"></div>
-    </button>
+    <button type="button" aria-label="List of saves" class="menu">Olds</button>
     <ul class="js-list-of-saves list-of-saves"></ul>
   </header>
   <textarea class="js-write-area write-area"></textarea>
