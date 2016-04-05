@@ -68,7 +68,7 @@ const renderListing = function () {
     let li = document.createElement('li')
     let button = document.createElement('button')
     button.type = 'button'
-    button.innerText = localStorage.getItem(key).split('\n')[0] || 'Empty'
+    button.innerText = (localStorage.getItem(key).split('\n')[0] || 'Empty').substr(0, 50)
     button.setAttribute('data-save', key)
     button.classList.add('js-load-save')
     let deleteButton = document.createElement('button')
