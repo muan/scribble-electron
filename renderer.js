@@ -8,7 +8,7 @@ const currentSave = function () {
 const loadSaves = function () {
   return Object.keys(localStorage).filter(function (key) {
     return key.startsWith(saveNameFixed)
-  })
+  }).reverse()
 }
 
 const loadSave = function (saveName) {
@@ -32,7 +32,7 @@ const saveData = function (evt) {
 const newSave = function () {
   var saves = loadSaves()
   if (saves.length > 0) {
-    var num = Number(saves[saves.length-1].replace(saveNameFixed, '')) + 1
+    var num = Number(saves[0].replace(saveNameFixed, '')) + 1
   } else {
     var num = 1
   }
