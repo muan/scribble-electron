@@ -29,4 +29,4 @@ Scribble is a menubar note taking app using `LocalStorage`.
 
 ### Built with
 
-- [maxogden/menubar](/maxogden/menubar)
+- [maxogden/menubar](https://github.com/maxogden/menubar)
