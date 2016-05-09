@@ -2,6 +2,11 @@
 
 Scribble is a menubar note taking app using `LocalStorage`.
 
+### Install
+
+[Download the latest version for Mac on the releases page](https://github.com/muan/scribble-electron/releases) (and drag into your apps folder.)
+
+
 ### How it works
 
 ![using scribble](http://cl.ly/2F020J3D3Q2n/Screen%20Recording%202016-04-05%20at%2011.59%20AM.gif)
