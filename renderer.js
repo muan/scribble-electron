@@ -2,29 +2,29 @@ const writeArea = document.querySelector('.js-write-area')
 const listOfSaves = document.querySelector('.js-list-of-saves')
 const saveNameFixed = 'scribbleSave'
 const currentSave = function () {
-  return localStorage.getItem('currentScribbleSave')
+  return window.localStorage.getItem('currentScribbleSave')
 }
 
 const loadSaves = function () {
-  return Object.keys(localStorage).filter(function (key) {
+  return Object.keys(window.localStorage).filter(function (key) {
     return key.startsWith(saveNameFixed)
   }).reverse()
 }
 
 const loadSave = function (saveName) {
-  if (localStorage.getItem(saveName) !== null) {
+  if (window.localStorage.getItem(saveName) !== null) {
     setCurrentSave(saveName)
-    writeArea.value = localStorage.getItem(saveName)
+    writeArea.value = window.localStorage.getItem(saveName)
     renderListing()
     writeArea.focus()
   } else {
-    alert('save not found')
+    window.alert('save not found')
   }
 }
 
 const saveData = function (evt) {
-  localStorage.setItem(currentSave(), evt.target.value)
-  if (localStorage.getItem(currentSave()).indexOf('\n') < 0) {
+  window.localStorage.setItem(currentSave(), evt.target.value)
+  if (window.localStorage.getItem(currentSave()).indexOf('\n') < 0) {
     renderListing()
   }
 }
@@ -39,21 +39,21 @@ const newSave = function () {
   }
 
   let name = saveNameFixed + num
-  localStorage.setItem(name, '')
+  window.localStorage.setItem(name, '')
   loadSave(name)
 
   renderListing()
 }
 
 const setCurrentSave = function (saveName) {
-  localStorage.setItem('currentScribbleSave', saveName)
+  window.localStorage.setItem('currentScribbleSave', saveName)
 }
 
 const deleteSave = function (saveName) {
   if (loadSaves().length === 1) {
-    return alert('can\'t delete the last save')
-  } else if (confirm('are you sure? the note will be gone forever!')) {
-    localStorage.removeItem(saveName)
+    return window.alert('can\'t delete the last save')
+  } else if (window.confirm('are you sure? the note will be gone forever!')) {
+    window.localStorage.removeItem(saveName)
     if (currentSave() === saveName) {
       loadSave(loadSaves()[0])
     }
@@ -68,7 +68,7 @@ const renderListing = function () {
     let li = document.createElement('li')
     let button = document.createElement('button')
     button.type = 'button'
-    button.innerText = (localStorage.getItem(key).split('\n')[0] || 'Empty').substr(0, 50)
+    button.innerText = (window.localStorage.getItem(key).split('\n')[0] || 'Empty').substr(0, 50)
     button.setAttribute('data-save', key)
     button.classList.add('js-load-save')
     let deleteButton = document.createElement('button')
@@ -77,7 +77,7 @@ const renderListing = function () {
     deleteButton.classList.add('js-delete-save')
     deleteButton.setAttribute('data-save', key)
 
-    if (key == currentSave()) button.classList.add('current')
+    if (key === currentSave()) button.classList.add('current')
     li.appendChild(button)
     if (loadSaves().length !== 1) li.appendChild(deleteButton)
     listOfSaves.appendChild(li)
