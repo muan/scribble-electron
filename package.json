@@ -4,7 +4,9 @@
   "description": "Taking notes like a human person in 21th century.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "app": "electron .",
+    "build": "electron-packager . Scribble --platform=darwin --arch=x64 --version=0.37.8 --overwrite --icon=scribble",
+    "test": "standard index.js renderer.js"
   },
   "keywords": [
     "electron",
