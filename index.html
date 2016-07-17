@@ -76,15 +76,41 @@
   .list-of-saves.open {
     visibility: visible;
   }
+
+  .options-panel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    top: 40px;
+    left: 0;
+    display: none;
+    background: #fff;
+    font-size: 12px;
+  }
+
+  .options-panel.open {
+    display: block;
+    z-index: 3;
+  }
   </style>
 </head>
 <body>
   <header class="header">
+    <button type="button" class="js-options">Opts</button>
     <button type="button" class="js-new-save">New</button>
     <button type="button" aria-label="List of saves" class="menu">Olds</button>
     <ul class="js-list-of-saves list-of-saves"></ul>
   </header>
   <textarea class="js-write-area write-area"></textarea>
+  <section class="options-panel js-options-panel">
+    Theme:
+    <select name="theme">
+      <option value="mac">Mac</option>
+      <option value="notepad">Notepad</option>
+      <option value="Terminal">Terminal</option>
+    </select>
+  </section>
 
   <script type="text/javascript" src="renderer.js"></script>
 </body>

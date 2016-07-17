@@ -5,6 +5,10 @@ const currentSave = function () {
   return window.localStorage.getItem('currentScribbleSave')
 }
 
+const toggleOptionsPanel = function () {
+  document.querySelector('.js-options-panel').classList.toggle('open')
+}
+
 const loadSaves = function () {
   return Object.keys(window.localStorage).filter(function (key) {
     return key.startsWith(saveNameFixed)
@@ -107,6 +111,10 @@ document.addEventListener('click', function (evt) {
 
   if (evt.target.classList.contains('js-new-save')) {
     newSave()
+  }
+
+  if (evt.target.classList.contains('js-options')) {
+    toggleOptionsPanel()
   }
 
   if (evt.target.classList.contains('js-delete-save')) {
