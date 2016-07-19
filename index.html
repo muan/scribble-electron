@@ -2,98 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <style type="text/css">
-  html {
-    background-color: #fff;
-  }
-
-  body,
-  button,
-  textarea {
-    word-wrap: break-word;
-    font-family: menlo, monaco, monospace;
-    margin: 0;
-  }
-
-  button {
-    max-width: 80vw;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .header {
-    position: absolute;
-    padding: 4px 10px 5px;
-    width: 100%;
-    z-index: 2;
-    border-bottom: 1px solid #eee;
-    text-align: right;
-  }
-
-  .header:hover ~ .write-area {
-    opacity: 0.5;
-  }
-
-  div,
-  header,
-  textarea {
-    box-sizing: border-box;
-  }
-
-  .write-area {
-    position: absolute;
-    padding: 0 10px;
-    line-height: 20px;
-    background-attachment: local;
-    background-image: linear-gradient(transparent 0, transparent 19px, #e0e0e0 20px);
-    background-size: auto 20px;
-    border: 0;
-    width: 100%;
-    top: 40px;
-    bottom: 0;
-    transition: opacity .3s;
-
-    /* Weirdest chrome bug hack ever */
-    outline: 1px solid transparent;
-  }
-
-  .current {
-    font-weight: bold;
-  }
-
-  .list-of-saves {
-    visibility: collapse;
-    position: absolute;
-    top: 5px;
-    right: 3px;
-    padding: 14px 5px 0;
-    list-style: none;
-  }
-
-  .menu:hover ~ .list-of-saves,
-  .list-of-saves:hover,
-  .list-of-saves.open {
-    visibility: visible;
-  }
-
-  .options-panel {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    top: 40px;
-    left: 0;
-    display: none;
-    background: #fff;
-    font-size: 12px;
-  }
-
-  .options-panel.open {
-    display: block;
-    z-index: 3;
-  }
-  </style>
+  <link rel="stylesheet" type="text/css" href="base.css">
+  <link rel="stylesheet" type="text/css" href="./themes/mac.css" disabled>
+  <link rel="stylesheet" type="text/css" href="./themes/notepad.css" disabled>
+  <link rel="stylesheet" type="text/css" href="./themes/terminal.css" disabled>
 </head>
 <body>
   <header class="header">
@@ -104,12 +16,15 @@
   </header>
   <textarea class="js-write-area write-area"></textarea>
   <section class="options-panel js-options-panel">
-    Theme:
-    <select name="theme">
-      <option value="mac">Mac</option>
-      <option value="notepad">Notepad</option>
-      <option value="Terminal">Terminal</option>
-    </select>
+    <label>
+      Theme:
+      <select name="theme" class="js-theme-ctrl">
+        <option></option>
+        <option value="mac">Mac</option>
+        <option value="notepad">Notepad</option>
+        <option value="terminal"></option>
+      </select>
+    </label>
   </section>
 
   <script type="text/javascript" src="renderer.js"></script>

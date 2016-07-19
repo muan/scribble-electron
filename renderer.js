@@ -9,6 +9,19 @@ const toggleOptionsPanel = function () {
   document.querySelector('.js-options-panel').classList.toggle('open')
 }
 
+const switchTheme = function (themeName) {
+  let tags = document.querySelectorAll('link[href*="themes"]')
+  Array.prototype.forEach.call(tags, function (tag) {
+    tag.disabled = true
+  })
+
+  if (!themeName) return themeName
+  window.localStorage.setItem('scribbleTheme', 'notepad')
+
+  let linkTag = document.querySelector('link[href*="' + themeName + '"]')
+  linkTag.disabled = false
+}
+
 const loadSaves = function () {
   return Object.keys(window.localStorage).filter(function (key) {
     return key.startsWith(saveNameFixed)
@@ -98,6 +111,10 @@ const hideList = function () {
 
 writeArea.addEventListener('input', saveData)
 
+let theme = window.localStorage.getItem('scribbleTheme') || 'notepad'
+switchTheme(theme)
+document.querySelector('[name="theme"]').value = theme
+
 if (currentSave()) {
   loadSave(currentSave())
 } else {
@@ -122,6 +139,12 @@ document.addEventListener('click', function (evt) {
   }
 })
 
+document.addEventListener('change', function (evt) {
+  if (evt.target.classList.contains('js-theme-ctrl')) {
+    switchTheme(evt.target.value)
+  }
+})
+
 document.addEventListener('keydown', function (evt) {
   if (evt.shiftKey && evt.metaKey) {
     showList()
@@ -133,6 +156,10 @@ document.addEventListener('keydown', function (evt) {
 
   if (evt.metaKey && evt.code === 'KeyD') {
     deleteSave(currentSave())
+  }
+
+  if (evt.metaKey && evt.code === 'Comma') {
+    toggleOptionsPanel()
   }
 
   if (evt.metaKey && evt.code === 'BracketLeft') {

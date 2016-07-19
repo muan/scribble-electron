@@ -1,0 +1,6 @@
+body,
+textarea,
+input,
+button {
+  font-family: menlo, monaco, monospace;
+}
