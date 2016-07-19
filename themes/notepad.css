@@ -4,3 +4,14 @@ input,
 button {
   font-family: menlo, monaco, monospace;
 }
+
+.write-area {
+  line-height: 20px;
+  background-attachment: local;
+  background-image: linear-gradient(transparent 0, transparent 19px, #e0e0e0 20px);
+  background-size: auto 20px;
+  transition: opacity .3s;
+
+  /* Weirdest chrome bug hack ever */
+  outline: 1px solid transparent;
+}

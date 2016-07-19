@@ -38,15 +38,10 @@ textarea {
 .write-area {
   position: absolute;
   padding: 0 10px;
-  line-height: 20px;
-  background-attachment: local;
-  background-image: linear-gradient(transparent 0, transparent 19px, #e0e0e0 20px);
-  background-size: auto 20px;
   border: 0;
   width: 100%;
   top: 40px;
   bottom: 0;
-  transition: opacity .3s;
 
   /* Weirdest chrome bug hack ever */
   outline: 1px solid transparent;

@@ -15,16 +15,26 @@
     <ul class="js-list-of-saves list-of-saves"></ul>
   </header>
   <textarea class="js-write-area write-area"></textarea>
+
   <section class="options-panel js-options-panel">
-    <label>
-      Theme:
-      <select name="theme" class="js-theme-ctrl">
-        <option></option>
-        <option value="mac">Mac</option>
-        <option value="notepad">Notepad</option>
-        <option value="terminal">Terminal</option>
-      </select>
-    </label>
+    <p>
+      <label>
+        Theme:
+        <select name="theme" class="js-theme-ctrl">
+          <option></option>
+          <option value="mac">Mac</option>
+          <option value="notepad">Notepad</option>
+          <option value="terminal">Terminal</option>
+        </select>
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Open app shortcut
+        <input name="open_shortcut" type="text" class="js-open-shortcut">
+      </label>
+    </p>
   </section>
 
   <script type="text/javascript" src="renderer.js"></script>

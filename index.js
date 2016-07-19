@@ -6,15 +6,24 @@ const mb = menubar({
   'window-position': 'topRight'
 })
 const gs = require('electron').globalShortcut
+const ipc = require('electron').ipcMain
 const Menu = require('menu')
 
 mb.on('ready', function () {
-  gs.register("command+shift+'", function () {
-    mb.window.isVisible() ? mb.hideWindow() : mb.showWindow()
-  })
-
   var menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
+})
+
+ipc.on('shortcutSet', function (evt, shortcut) {
+  gs.unregisterAll()
+
+  try {
+    gs.register(shortcut, function () {
+      mb.window.isVisible() ? mb.hideWindow() : mb.showWindow()
+    })
+  } catch (err) {
+    mb.window.webContents.send('optionsError', err)
+  }
 })
 
 const template = [

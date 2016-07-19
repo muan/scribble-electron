@@ -1,6 +1,13 @@
 body,
 textarea,
+input,
+button {
+  font-family: menlo, monaco, monospace;
+}
+
+body,
+textarea,
 .options-panel {
   background: #101010;
-  color: green;
+  color: greenyellow;
 }

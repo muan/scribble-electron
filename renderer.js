@@ -1,3 +1,4 @@
+const ipc = require('electron').ipcRenderer
 const writeArea = document.querySelector('.js-write-area')
 const listOfSaves = document.querySelector('.js-list-of-saves')
 const saveNameFixed = 'scribbleSave'
@@ -9,17 +10,24 @@ const toggleOptionsPanel = function () {
   document.querySelector('.js-options-panel').classList.toggle('open')
 }
 
-const switchTheme = function (themeName) {
+const switchTheme = function () {
+  let theme = document.querySelector('.js-theme-ctrl').value
   let tags = document.querySelectorAll('link[href*="themes"]')
   Array.prototype.forEach.call(tags, function (tag) {
     tag.disabled = true
   })
 
-  if (!themeName) return themeName
-  window.localStorage.setItem('scribbleTheme', 'notepad')
+  if (!theme) return theme
+  window.localStorage.setItem('scribbleTheme', theme)
 
-  let linkTag = document.querySelector('link[href*="' + themeName + '"]')
+  let linkTag = document.querySelector('link[href*="' + theme + '"]')
   linkTag.disabled = false
+}
+
+const setShortcut = function () {
+  let shortcut = document.querySelector('.js-open-shortcut').value
+  window.localStorage.setItem('scribbleOpenShortcut', shortcut)
+  ipc.send('shortcutSet', shortcut)
 }
 
 const loadSaves = function () {
@@ -112,8 +120,16 @@ const hideList = function () {
 writeArea.addEventListener('input', saveData)
 
 let theme = window.localStorage.getItem('scribbleTheme') || 'notepad'
-switchTheme(theme)
-document.querySelector('[name="theme"]').value = theme
+document.querySelector('.js-theme-ctrl').value = theme
+switchTheme()
+
+let shortcut = window.localStorage.getItem('scribbleOpenShortcut') || 'command+shift+\''
+document.querySelector('.js-open-shortcut').value = shortcut
+setShortcut()
+
+ipc.on('optionsError', function (evt) {
+  alert('Invalid key binding.')
+})
 
 if (currentSave()) {
   loadSave(currentSave())
@@ -141,8 +157,12 @@ document.addEventListener('click', function (evt) {
 
 document.addEventListener('change', function (evt) {
   if (evt.target.classList.contains('js-theme-ctrl')) {
-    switchTheme(evt.target.value)
+    switchTheme()
   }
+})
+
+document.querySelector('.js-open-shortcut').addEventListener('blur', function () {
+  setShortcut()
 })
 
 document.addEventListener('keydown', function (evt) {
