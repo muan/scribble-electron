@@ -95,11 +95,11 @@ const renderListing = function () {
     button.type = 'button'
     button.innerText = (window.localStorage.getItem(key).split('\n')[0] || 'Empty').substr(0, 50)
     button.setAttribute('data-save', key)
-    button.classList.add('js-load-save')
+    button.classList.add('js-load-save', 'load-save')
     let deleteButton = document.createElement('button')
     deleteButton.type = 'button'
     deleteButton.innerText = '×'
-    deleteButton.classList.add('js-delete-save')
+    deleteButton.classList.add('js-delete-save', 'delete-save')
     deleteButton.setAttribute('data-save', key)
 
     if (key === currentSave()) button.classList.add('current')

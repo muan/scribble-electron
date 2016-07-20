@@ -3,4 +3,100 @@ textarea,
 input,
 button {
   font-family: 'Roboto';
+  font-size: 12px;
+}
+
+.header {
+  height: 40px;
+  background-image: linear-gradient(to bottom, #f5f4f5, #d7d5d7);
+  border-bottom: 1px solid #bcbabc;
+  padding: 5px;
+}
+
+.write-area,
+.options-panel {
+  top: 40px;
+}
+
+.header > button {
+  border: 1px solid #dedcde;
+  border-bottom: 1px solid #b9b8b9;
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  padding: 5px 8px;
+  margin: 3px;
+}
+
+.header > button:active {
+  background-color: #e9e9e9;
+}
+
+.write-area {
+  padding: 15px;
+}
+
+.menu:hover ~ .list-of-saves {
+  visibility: hidden;
+}
+
+.menu:focus ~ .list-of-saves,
+.list-of-saves:hover,
+.list-of-saves.open {
+  visibility: visible;
+  right: 0;
+}
+
+.list-of-saves {
+  transition: .3s right;
+  top: 40px;
+  position: fixed;
+  margin: 0;
+  right: -100%;
+  bottom: 0;
+  border-left: 1px solid #cdcdcd;
+  background-color: rgba(240, 240, 240, .95);
+  padding: 0;
+  text-align: left;
+}
+
+.list-of-saves:before {
+  content: "Saves";
+  display: block;
+  color: #999;
+  padding: 5px 5px;
+  clear: both;
+}
+
+.load-save,
+.delete-save {
+  background: transparent;
+  border: 0;
+}
+
+.load-save {
+  text-align: left;
+  display: block;
+  width: 100%;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 40px;
+}
+
+.load-save.current {
+  background-color: #166ed8;
+  color: #fff;
+}
+
+.current + .delete-save {
+  color: #fff;
+}
+
+.delete-save {
+  float: right;
+  color: #999;
+  margin-top: -20px;
+}
+
+button {
+  outline: none;
 }
