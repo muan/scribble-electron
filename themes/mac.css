@@ -2,7 +2,7 @@ body,
 textarea,
 input,
 button {
-  font-family: 'Roboto';
+  font-family: --apple-system, sans-serif;
   font-size: 12px;
 }
 
@@ -16,6 +16,19 @@ button {
 .write-area,
 .options-panel {
   top: 40px;
+}
+
+.options-panel {
+  background-color: #ececec;
+  font-size: 13px;
+}
+
+.options-panel label {
+  width: 180px;
+  text-align: right;
+  padding: 3px 5px;
+  display: block;
+  float: left;
 }
 
 .header > button {
@@ -83,6 +96,7 @@ button {
 }
 
 .load-save.current {
+  font-weight: normal;
   background-color: #166ed8;
   color: #fff;
 }

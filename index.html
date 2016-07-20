@@ -18,22 +18,22 @@
 
   <section class="options-panel js-options-panel">
     <p>
-      <label>
+      <label for="theme">
         Theme:
-        <select name="theme" class="js-theme-ctrl">
-          <option></option>
-          <option value="mac">Mac</option>
-          <option value="notepad">Notepad</option>
-          <option value="terminal">Terminal</option>
-        </select>
       </label>
+      <select name="theme" id="theme" class="js-theme-ctrl">
+        <option></option>
+        <option value="mac">Mac</option>
+        <option value="notepad">Notepad</option>
+        <option value="terminal">Terminal</option>
+      </select>
     </p>
 
     <p>
-      <label>
-        Open app shortcut
-        <input name="open_shortcut" type="text" class="js-open-shortcut">
+      <label for="open_shortcut">
+        Open app shortcut:
       </label>
+      <input name="open_shortcut" id="open_shortcut" type="text" class="js-open-shortcut">
     </p>
   </section>
 
