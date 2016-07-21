@@ -11,6 +11,11 @@ button {
   background-image: linear-gradient(to bottom, #f5f4f5, #d7d5d7);
   border-bottom: 1px solid #bcbabc;
   padding: 5px;
+  text-align: left;
+}
+
+.header-button:first-of-type {
+  float: right;
 }
 
 .write-area,
