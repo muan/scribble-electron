@@ -25,6 +25,8 @@ button {
   text-align: right;
 }
 
+input,
+select,
 div,
 header,
 textarea {

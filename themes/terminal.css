@@ -1,7 +1,15 @@
+:root {
+  --terminal-blue: #009;
+  --terminal-black: #101010;
+  --terminal-white: #fff;
+  --terminal-green: #acfe2e;
+}
+
 body,
 textarea,
 input,
-button {
+button,
+select {
   font-family: menlo, monaco, monospace;
 }
 
@@ -9,7 +17,7 @@ body,
 textarea,
 .options-panel {
   background: #101010;
-  color: greenyellow;
+  color: var(--terminal-green);
 }
 
 button {
@@ -33,7 +41,7 @@ button {
 }
 
 .list-of-saves {
-  background: #009;
+  background: var(--terminal-blue);
   padding: 0;
   margin: 0;
   margin-right: 2px;
@@ -49,18 +57,48 @@ button {
   text-align: left;
   display: block;
   width: 100%;
-  color: #fff;
+  color: var(--terminal-white);
   padding: 4px 8px;
   padding-right: 30px;
 }
 
 .load-save.current,
 .load-save.current + .delete-save {
-  background: #fff;
-  color: #009;
+  background: var(--terminal-white);
+  color: var(--terminal-blue);
 }
 
 .delete-save {
   color: #fff;
   margin-top: -18px;
+}
+
+.options-panel {
+  color: var(--terminal-white);
+}
+
+.options-panel label {
+  font-weight: bold;
+}
+
+.options-panel label:after {
+  margin-top: 7px;
+  content: ">";
+  display: block;
+  position: absolute;
+}
+
+.options-panel select,
+.options-panel input {
+  font-size: 12px;
+  padding: 2px 8px;
+  display: block;
+  margin-top: 5px;
+  margin-left: 5px;
+  border-radius: 0 !important;
+  border: 0;
+  background-color: transparent;
+  color: var(--terminal-white);
+  border-style: none;
+
 }
