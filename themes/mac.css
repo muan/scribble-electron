@@ -45,6 +45,7 @@ button {
 }
 
 .write-area {
+  line-height: 1.5em;
   padding: 15px;
 }
 
