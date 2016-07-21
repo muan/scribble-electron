@@ -74,10 +74,11 @@ button {
 }
 
 .list-of-saves:before {
-  content: "Saves";
+  content: "Notes";
+  font-size: 11px;
   display: block;
-  color: #999;
-  padding: 5px 5px;
+  color: #747575;
+  padding: 8px;
   clear: both;
 }
 
