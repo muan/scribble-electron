@@ -15,3 +15,7 @@ button {
   /* Weirdest chrome bug hack ever */
   outline: 1px solid transparent;
 }
+
+.header:hover ~ .write-area {
+  opacity: 0.5;
+}

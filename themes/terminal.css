@@ -11,3 +11,56 @@ textarea,
   background: #101010;
   color: greenyellow;
 }
+
+button {
+  outline: none;
+}
+
+.header {
+  border-bottom: 0;
+}
+
+.write-area {
+  line-height: 1.5em;
+}
+
+.header > button {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #fff;
+  background-color: transparent;
+  border: 0;
+}
+
+.list-of-saves {
+  background: #009;
+  padding: 0;
+  margin: 0;
+  margin-right: 2px;
+}
+
+.load-save,
+.delete-save {
+  border: 0;
+  background: transparent;
+}
+
+.load-save {
+  text-align: left;
+  display: block;
+  width: 100%;
+  color: #fff;
+  padding: 4px 8px;
+  padding-right: 30px;
+}
+
+.load-save.current,
+.load-save.current + .delete-save {
+  background: #fff;
+  color: #009;
+}
+
+.delete-save {
+  color: #fff;
+  margin-top: -18px;
+}
