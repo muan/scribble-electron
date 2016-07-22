@@ -38,13 +38,16 @@ button {
   color: #fff;
   background-color: transparent;
   border: 0;
+  padding: 0;
 }
 
 .list-of-saves {
-  background: var(--terminal-blue);
   padding: 0;
-  margin: 0;
-  margin-right: 2px;
+  padding: 10px 5px;
+}
+
+.list-of-saves li {
+  background: var(--terminal-blue);
 }
 
 .load-save,

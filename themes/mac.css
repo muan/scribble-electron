@@ -26,6 +26,12 @@ button {
 .options-panel {
   background-color: #ececec;
   font-size: 13px;
+  opacity: 0;
+  transition: .5s opacity;
+}
+
+.options-panel.open {
+  opacity: 1;
 }
 
 .options-panel label {
