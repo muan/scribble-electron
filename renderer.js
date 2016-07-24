@@ -33,6 +33,8 @@ const setShortcut = function () {
 const loadSaves = function () {
   return Object.keys(window.localStorage).filter(function (key) {
     return key.startsWith(saveNameFixed)
+  }).sort(function (a, b) {
+    return Number(a.replace(saveNameFixed, '')) - Number(b.replace(saveNameFixed, ''))
   }).reverse()
 }
 
