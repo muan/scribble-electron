@@ -28,6 +28,8 @@ button {
   font-size: 13px;
   opacity: 0;
   transition: .5s opacity;
+  padding-left: 200px;
+  width: 100%;
 }
 
 .options-panel.open {
@@ -37,9 +39,9 @@ button {
 .options-panel label {
   width: 180px;
   text-align: right;
-  padding: 3px 5px;
   display: block;
-  float: left;
+  position: absolute;
+  margin-left: -190px;
 }
 
 .header-button {

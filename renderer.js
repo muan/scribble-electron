@@ -11,23 +11,46 @@ const toggleOptionsPanel = function () {
 }
 
 const switchTheme = function () {
-  let theme = document.querySelector('.js-theme-ctrl').value
-  let tags = document.querySelectorAll('link[href*="themes"]')
+  const theme = document.querySelector('.js-theme-ctrl').value
+  const tags = document.querySelectorAll('link[href^="./themes/"]')
   Array.prototype.forEach.call(tags, function (tag) {
     tag.disabled = true
   })
 
-  if (!theme) return theme
   window.localStorage.setItem('scribbleTheme', theme)
+  if (!theme) return theme
 
-  let linkTag = document.querySelector('link[href*="' + theme + '"]')
+  const linkTag = document.querySelector('link[href*="' + theme + '"]')
   linkTag.disabled = false
 }
 
 const setShortcut = function () {
-  let shortcut = document.querySelector('.js-open-shortcut').value
+  const shortcut = document.querySelector('.js-open-shortcut').value
   window.localStorage.setItem('scribbleOpenShortcut', shortcut)
   ipc.send('shortcutSet', shortcut)
+}
+
+const setStylesheet = function () {
+  let stylesheet
+  if (document.querySelector('.js-stylesheet').value) {
+    stylesheet = document.querySelector('.js-stylesheet').files[0].path
+  } else if (window.localStorage.getItem('scribbleStylesheet')) {
+    stylesheet = window.localStorage.getItem('scribbleStylesheet')
+  }
+
+  const linkTag = document.querySelector('body > link')
+  if (stylesheet) {
+    linkTag.href = stylesheet
+    window.localStorage.setItem('scribbleStylesheet', stylesheet)
+    document.querySelector('.js-current-stylesheet').value = stylesheet
+    document.querySelector('.js-current-stylesheet').classList.remove('hidden')
+    document.querySelector('.js-remove-stylesheet').classList.remove('hidden')
+  } else {
+    linkTag.href = ''
+    document.querySelector('.js-current-stylesheet').value = ''
+    document.querySelector('.js-current-stylesheet').classList.add('hidden')
+    document.querySelector('.js-remove-stylesheet').classList.add('hidden')
+  }
 }
 
 const loadSaves = function () {
@@ -121,13 +144,16 @@ const hideList = function () {
 
 writeArea.addEventListener('input', saveData)
 
-let theme = window.localStorage.getItem('scribbleTheme') || 'notepad'
+let theme = window.localStorage.getItem('scribbleTheme')
+if (theme === null) theme = 'mac'
 document.querySelector('.js-theme-ctrl').value = theme
 switchTheme()
 
 let shortcut = window.localStorage.getItem('scribbleOpenShortcut') || 'command+shift+\''
 document.querySelector('.js-open-shortcut').value = shortcut
 setShortcut()
+
+setStylesheet()
 
 ipc.on('optionsError', function (evt) {
   alert('Invalid key binding.')
@@ -155,11 +181,21 @@ document.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('js-delete-save')) {
     deleteSave(evt.target.getAttribute('data-save'))
   }
+
+  if (evt.target.classList.contains('js-remove-stylesheet')) {
+    window.localStorage.setItem('scribbleStylesheet', '')
+    document.querySelector('.js-stylesheet').value = ''
+    setStylesheet()
+  }
 })
 
 document.addEventListener('change', function (evt) {
   if (evt.target.classList.contains('js-theme-ctrl')) {
     switchTheme()
+  }
+
+  if (evt.target.classList.contains('js-stylesheet')) {
+    setStylesheet()
   }
 })
 

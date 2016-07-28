@@ -17,7 +17,7 @@
   <textarea class="js-write-area write-area"></textarea>
 
   <section class="options-panel js-options-panel">
-    <p>
+    <div class="mb-15">
       <label for="theme">
         Theme:
       </label>
@@ -27,16 +27,26 @@
         <option value="notepad">Notepad</option>
         <option value="terminal">Terminal</option>
       </select>
-    </p>
+    </div>
 
-    <p>
+    <div class="mb-15">
       <label for="open_shortcut">
         Open app shortcut:
       </label>
       <input name="open_shortcut" id="open_shortcut" type="text" class="js-open-shortcut">
-    </p>
+    </div>
+
+    <div class="mb-15">
+      <label for="personal_styles">
+        Add your own stylesheet:
+      </label>
+      <input type="text" readonly class="js-current-stylesheet readonly-input hidden">
+      <button type="button" class="js-remove-stylesheet hidden">Unset</button>
+      <input name="personal_styles" id="personal_styles" type="file" class="js-stylesheet">
+    </div>
   </section>
 
+  <link rel="stylesheet" type="text/css" href="">
   <script type="text/javascript" src="renderer.js"></script>
 </body>
 </html>

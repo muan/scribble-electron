@@ -28,9 +28,14 @@ button {
 input,
 select,
 div,
+section,
 header,
 textarea {
   box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
 }
 
 .write-area {
@@ -72,4 +77,14 @@ textarea {
 .options-panel.open {
   visibility: visible;
   z-index: 3;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.readonly-input {
+  background-color: transparent;
+  border: 0;
+  width: 100%;
 }
