@@ -58,6 +58,12 @@ button {
 .write-area {
   line-height: 1.5em;
   padding: 15px;
+  opacity: 0.9;
+  outline: none;
+}
+
+.write-area:focus {
+  opacity: 1;
 }
 
 .menu:hover ~ .list-of-saves {
@@ -109,7 +115,6 @@ button {
 }
 
 .load-save.current {
-  font-weight: normal;
   background-color: #166ed8;
   color: #fff;
 }

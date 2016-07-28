@@ -30,6 +30,12 @@ button {
 
 .write-area {
   line-height: 1.5em;
+  outline: none;
+  color: #eee;
+}
+
+.write-area:focus {
+  color: #fff;
 }
 
 .header-button {

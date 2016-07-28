@@ -40,13 +40,6 @@ textarea {
   width: 100%;
   top: 40px;
   bottom: 0;
-
-  /* Weirdest chrome bug hack ever */
-  outline: 1px solid transparent;
-}
-
-.current {
-  font-weight: bold;
 }
 
 .list-of-saves {

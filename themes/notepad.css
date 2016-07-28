@@ -19,3 +19,7 @@ button {
 .header:hover ~ .write-area {
   opacity: 0.5;
 }
+
+.current {
+  font-weight: bold;
+}
