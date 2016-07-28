@@ -156,7 +156,7 @@ setShortcut()
 setStylesheet()
 
 ipc.on('optionsError', function (evt) {
-  alert('Invalid key binding.')
+  window.alert('Invalid key binding.')
 })
 
 if (currentSave()) {
