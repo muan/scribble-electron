@@ -1,6 +1,6 @@
 # Scribble (electron)
 
-Scribble is a menubar note taking app using `LocalStorage`.
+Scribble is a menubar note taking app using `localStorage`.
 
 ### Install
 
@@ -15,6 +15,8 @@ Scribble is a menubar note taking app using `LocalStorage`.
 
 <kbd>cmd + shift + '</kbd> Open app
 
+<kbd>cmd + ,</kbd> Open preference
+
 <kbd>cmd + N</kbd> Create new note
 
 <kbd>cmd + D</kbd> Delete current note
@@ -27,10 +29,7 @@ Scribble is a menubar note taking app using `LocalStorage`.
 
 ### TODO
 
-- Themes
-  - Clean with no lines and sans-serif
-  - Classic serifs
-- Sync with :cloud:
+- Save to file (:wave: `localStorage`) & Sync with :cloud:
 
 ### Built with
 
