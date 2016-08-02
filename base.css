@@ -1,0 +1,90 @@
+html {
+  background-color: #fff;
+}
+
+body,
+button,
+textarea {
+  word-wrap: break-word;
+  margin: 0;
+}
+
+button {
+  max-width: 80vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header {
+  position: absolute;
+  padding: 4px 10px 5px;
+  width: 100%;
+  z-index: 2;
+  border-bottom: 1px solid #eee;
+  text-align: right;
+}
+
+input,
+select,
+div,
+section,
+header,
+textarea {
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+.write-area {
+  position: absolute;
+  padding: 0 10px;
+  border: 0;
+  width: 100%;
+  top: 40px;
+  bottom: 0;
+}
+
+.list-of-saves {
+  visibility: collapse;
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  padding: 14px 5px 0;
+  list-style: none;
+}
+
+.menu:hover ~ .list-of-saves,
+.list-of-saves:hover,
+.list-of-saves.open {
+  visibility: visible;
+}
+
+.options-panel {
+  position: fixed;
+  width: 100%;
+  padding: 10px;
+  top: 40px;
+  bottom: 0;
+  left: 0;
+  visibility: collapse;
+  background: #fff;
+  font-size: 12px;
+}
+
+.options-panel.open {
+  visibility: visible;
+  z-index: 3;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.readonly-input {
+  background-color: transparent;
+  border: 0;
+  width: 100%;
+}

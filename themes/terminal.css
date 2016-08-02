@@ -1,0 +1,119 @@
+:root {
+  --terminal-blue: #009;
+  --terminal-black: #101010;
+  --terminal-white: #fff;
+  --terminal-green: #acfe2e;
+}
+
+body,
+textarea,
+input,
+button,
+select {
+  font-family: menlo, monaco, monospace;
+}
+
+body,
+textarea,
+.options-panel {
+  background: #101010;
+  color: var(--terminal-green);
+}
+
+button {
+  outline: none;
+}
+
+.header {
+  border-bottom: 0;
+}
+
+.write-area {
+  line-height: 1.5em;
+  outline: none;
+  color: #eee;
+}
+
+.write-area:focus {
+  color: #fff;
+}
+
+.header-button {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #fff;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.list-of-saves {
+  padding: 0;
+  padding: 10px 5px;
+}
+
+.list-of-saves li {
+  background: var(--terminal-blue);
+}
+
+.load-save,
+.delete-save {
+  border: 0;
+  background: transparent;
+}
+
+.load-save {
+  text-align: left;
+  display: block;
+  width: 100%;
+  color: var(--terminal-white);
+  padding: 4px 8px;
+  padding-right: 30px;
+}
+
+.load-save.current,
+.load-save.current + .delete-save {
+  background: var(--terminal-white);
+  color: var(--terminal-blue);
+}
+
+.delete-save {
+  color: #fff;
+  margin-top: -18px;
+}
+
+.options-panel {
+  top: 30px;
+  padding: 0 10px;
+  color: var(--terminal-white);
+}
+
+.options-panel label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.options-panel label:after {
+  margin-top: 7px;
+  content: ">";
+  display: block;
+  position: absolute;
+}
+
+.options-panel select,
+.options-panel input[type=text],
+.options-panel input[type=file] {
+  margin-left: 5px;
+  padding: 2px 8px;
+}
+
+.options-panel select,
+.options-panel input[type=text] {
+  font-size: 12px;
+  border-radius: 0 !important;
+  border: 0;
+  background-color: transparent;
+  color: var(--terminal-white);
+  border-style: none;
+}

@@ -1,3 +1,4 @@
+const ipc = require('electron').ipcRenderer
 const writeArea = document.querySelector('.js-write-area')
 const listOfSaves = document.querySelector('.js-list-of-saves')
 const saveNameFixed = 'scribbleSave'
@@ -5,9 +6,58 @@ const currentSave = function () {
   return window.localStorage.getItem('currentScribbleSave')
 }
 
+const toggleOptionsPanel = function () {
+  document.querySelector('.js-options-panel').classList.toggle('open')
+}
+
+const switchTheme = function () {
+  const theme = document.querySelector('.js-theme-ctrl').value
+  const tags = document.querySelectorAll('link[href^="./themes/"]')
+  Array.prototype.forEach.call(tags, function (tag) {
+    tag.disabled = true
+  })
+
+  window.localStorage.setItem('scribbleTheme', theme)
+  if (!theme) return theme
+
+  const linkTag = document.querySelector('link[href*="' + theme + '"]')
+  linkTag.disabled = false
+}
+
+const setShortcut = function () {
+  const shortcut = document.querySelector('.js-open-shortcut').value
+  window.localStorage.setItem('scribbleOpenShortcut', shortcut)
+  ipc.send('shortcutSet', shortcut)
+}
+
+const setStylesheet = function () {
+  let stylesheet
+  if (document.querySelector('.js-stylesheet').value) {
+    stylesheet = document.querySelector('.js-stylesheet').files[0].path
+  } else if (window.localStorage.getItem('scribbleStylesheet')) {
+    stylesheet = window.localStorage.getItem('scribbleStylesheet')
+  }
+
+  const linkTag = document.querySelector('body > link')
+  if (stylesheet) {
+    linkTag.href = stylesheet
+    window.localStorage.setItem('scribbleStylesheet', stylesheet)
+    document.querySelector('.js-current-stylesheet').value = stylesheet
+    document.querySelector('.js-current-stylesheet').classList.remove('hidden')
+    document.querySelector('.js-remove-stylesheet').classList.remove('hidden')
+  } else {
+    linkTag.href = ''
+    document.querySelector('.js-current-stylesheet').value = ''
+    document.querySelector('.js-current-stylesheet').classList.add('hidden')
+    document.querySelector('.js-remove-stylesheet').classList.add('hidden')
+  }
+}
+
 const loadSaves = function () {
   return Object.keys(window.localStorage).filter(function (key) {
     return key.startsWith(saveNameFixed)
+  }).sort(function (a, b) {
+    return Number(a.replace(saveNameFixed, '')) - Number(b.replace(saveNameFixed, ''))
   }).reverse()
 }
 
@@ -70,11 +120,11 @@ const renderListing = function () {
     button.type = 'button'
     button.innerText = (window.localStorage.getItem(key).split('\n')[0] || 'Empty').substr(0, 50)
     button.setAttribute('data-save', key)
-    button.classList.add('js-load-save')
+    button.classList.add('js-load-save', 'load-save')
     let deleteButton = document.createElement('button')
     deleteButton.type = 'button'
     deleteButton.innerText = '×'
-    deleteButton.classList.add('js-delete-save')
+    deleteButton.classList.add('js-delete-save', 'delete-save')
     deleteButton.setAttribute('data-save', key)
 
     if (key === currentSave()) button.classList.add('current')
@@ -94,6 +144,21 @@ const hideList = function () {
 
 writeArea.addEventListener('input', saveData)
 
+let theme = window.localStorage.getItem('scribbleTheme')
+if (theme === null) theme = 'mac'
+document.querySelector('.js-theme-ctrl').value = theme
+switchTheme()
+
+let shortcut = window.localStorage.getItem('scribbleOpenShortcut') || 'command+shift+\''
+document.querySelector('.js-open-shortcut').value = shortcut
+setShortcut()
+
+setStylesheet()
+
+ipc.on('optionsError', function (evt) {
+  window.alert('Invalid key binding.')
+})
+
 if (currentSave()) {
   loadSave(currentSave())
 } else {
@@ -109,9 +174,33 @@ document.addEventListener('click', function (evt) {
     newSave()
   }
 
+  if (evt.target.classList.contains('js-options')) {
+    toggleOptionsPanel()
+  }
+
   if (evt.target.classList.contains('js-delete-save')) {
     deleteSave(evt.target.getAttribute('data-save'))
   }
+
+  if (evt.target.classList.contains('js-remove-stylesheet')) {
+    window.localStorage.setItem('scribbleStylesheet', '')
+    document.querySelector('.js-stylesheet').value = ''
+    setStylesheet()
+  }
+})
+
+document.addEventListener('change', function (evt) {
+  if (evt.target.classList.contains('js-theme-ctrl')) {
+    switchTheme()
+  }
+
+  if (evt.target.classList.contains('js-stylesheet')) {
+    setStylesheet()
+  }
+})
+
+document.querySelector('.js-open-shortcut').addEventListener('blur', function () {
+  setShortcut()
 })
 
 document.addEventListener('keydown', function (evt) {
@@ -125,6 +214,10 @@ document.addEventListener('keydown', function (evt) {
 
   if (evt.metaKey && evt.code === 'KeyD') {
     deleteSave(currentSave())
+  }
+
+  if (evt.metaKey && evt.code === 'Comma') {
+    toggleOptionsPanel()
   }
 
   if (evt.metaKey && evt.code === 'BracketLeft') {

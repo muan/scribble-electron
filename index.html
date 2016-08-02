@@ -2,90 +2,51 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <style type="text/css">
-  html {
-    background-color: #fff;
-  }
-
-  body,
-  button,
-  textarea {
-    word-wrap: break-word;
-    font-family: menlo, monaco, monospace;
-    margin: 0;
-  }
-
-  button {
-    max-width: 80vw;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .header {
-    position: absolute;
-    padding: 4px 10px 5px;
-    width: 100%;
-    z-index: 2;
-    border-bottom: 1px solid #eee;
-    text-align: right;
-  }
-
-  .header:hover ~ .write-area {
-    opacity: 0.5;
-  }
-
-  div,
-  header,
-  textarea {
-    box-sizing: border-box;
-  }
-
-  .write-area {
-    position: absolute;
-    padding: 0 10px;
-    line-height: 20px;
-    background-attachment: local;
-    background-image: linear-gradient(transparent 0, transparent 19px, #e0e0e0 20px);
-    background-size: auto 20px;
-    border: 0;
-    width: 100%;
-    top: 40px;
-    bottom: 0;
-    transition: opacity .3s;
-
-    /* Weirdest chrome bug hack ever */
-    outline: 1px solid transparent;
-  }
-
-  .current {
-    font-weight: bold;
-  }
-
-  .list-of-saves {
-    visibility: collapse;
-    position: absolute;
-    top: 5px;
-    right: 3px;
-    padding: 14px 5px 0;
-    list-style: none;
-  }
-
-  .menu:hover ~ .list-of-saves,
-  .list-of-saves:hover,
-  .list-of-saves.open {
-    visibility: visible;
-  }
-  </style>
+  <link rel="stylesheet" type="text/css" href="base.css">
+  <link rel="stylesheet" type="text/css" href="./themes/mac.css" disabled>
+  <link rel="stylesheet" type="text/css" href="./themes/notepad.css" disabled>
+  <link rel="stylesheet" type="text/css" href="./themes/terminal.css" disabled>
 </head>
 <body>
   <header class="header">
-    <button type="button" class="js-new-save">New</button>
-    <button type="button" aria-label="List of saves" class="menu">Olds</button>
+    <button type="button" class="header-button js-options">Settings</button>
+    <button type="button" class="header-button js-new-save">New</button>
+    <button type="button" aria-label="List of saves" class="header-button menu">Olds</button>
     <ul class="js-list-of-saves list-of-saves"></ul>
   </header>
   <textarea class="js-write-area write-area"></textarea>
 
+  <section class="options-panel js-options-panel">
+    <div class="mb-15">
+      <label for="theme">
+        Theme:
+      </label>
+      <select name="theme" id="theme" class="js-theme-ctrl">
+        <option></option>
+        <option value="mac">Mac</option>
+        <option value="notepad">Notepad</option>
+        <option value="terminal">Terminal</option>
+      </select>
+    </div>
+
+    <div class="mb-15">
+      <label for="open_shortcut">
+        Open app shortcut:
+      </label>
+      <input name="open_shortcut" id="open_shortcut" type="text" class="js-open-shortcut">
+    </div>
+
+    <div class="mb-15">
+      <label for="personal_styles">
+        Add your own stylesheet:
+      </label>
+      <input type="text" readonly class="js-current-stylesheet readonly-input hidden">
+      <button type="button" class="js-remove-stylesheet hidden">Unset</button>
+      <input name="personal_styles" id="personal_styles" type="file" class="js-stylesheet">
+    </div>
+  </section>
+
+  <link rel="stylesheet" type="text/css" href="">
   <script type="text/javascript" src="renderer.js"></script>
 </body>
 </html>
